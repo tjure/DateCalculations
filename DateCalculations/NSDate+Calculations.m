@@ -94,7 +94,7 @@
 	int calendarComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit);
 	NSDateComponents *comps = [currentCalendar components:calendarComponents fromDate:self];
 	
-	[comps setWeekday:1];
+	[comps setWeekday:currentCalendar.firstWeekday];
 	[comps setHour:0];
 	[comps setMinute:0];
 	[comps setSecond:0];
@@ -190,7 +190,9 @@
 	int calendarComponents = (NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSWeekdayCalendarUnit);
 	NSDateComponents *comps = [currentCalendar components:calendarComponents fromDate:self];
 	
-	[comps setWeekday:7];
+	NSInteger lastWeekDay = (currentCalendar.firstWeekday == 1) ? 7 : 1;
+    
+	[comps setWeekday:lastWeekDay];
 	[comps setHour:23];
 	[comps setMinute:59];
 	[comps setSecond:59];
